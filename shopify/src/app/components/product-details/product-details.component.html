@@ -1,0 +1,23 @@
+<section class="py-5">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <img src="{{ product.imageUrl }}" class="img-fluid">
+            </div>
+            <!-- Item info-->
+            <div class="col-lg-8">
+                <h1>{{ product.name }}</h1>
+                <p class="h4">{{ product.unitPrice | currency: "USD" }}</p>
+                <p class="text-small mb-4">{{ product.description }}</p>
+                <div class="d-flex align-items-center mb-4">
+                    <a (click)="addToCart()" class="btn btn-primary btn-sm py-2 border-bottom-0 px-5 me-3">
+                        <i class="fas fa-shopping-bag py-1 me-2"></i>Add to cart
+                    </a>
+                </div>
+
+                <a routerLink="/products" class="mt-5">Back to Product List</a>
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,74 @@
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+
+                <div *ngIf="cartItems.length == 0" style="min-height: 500px;">
+                    <header class="text-center mb-5">
+                        <h2>Your shopping cart is empty</h2>
+                    </header>
+                </div>
+                <!-- Navigation-->
+                <header *ngIf="cartItems.length > 0" class="text-center mb-5">
+                    <h2>Shopping cart</h2>
+                </header>
+                <!-- Shopping cart-->
+                <div *ngIf="cartItems.length > 0" class="table-responsive mb-4">
+                    <table class="table">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="p-3 border-0" scope="col"><strong class="text-uppercase">Product</strong>
+                                </th>
+                                <th class="p-3 border-0" scope="col"><strong class="text-uppercase">Price</strong></th>
+                                <th class="p-3 border-0" scope="col"><strong class="text-uppercase">Quantity</strong>
+                                </th>
+                                <th class="p-3 border-0" scope="col"><strong class="text-uppercase">Total</strong></th>
+                                <th class="p-3 border-0" scope="col"><strong class="text-uppercase"></strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of cartItems">
+                                <td class="p-3 pl-0 border-0" scope="row">
+                                    <div class="d-flex align-items-center"><a
+                                            class="reset-anchor d-block animsition-link" href="detail.html"><img
+                                                src="{{ item.imageUrl }}" alt="..." width="100"></a>
+                                        <div class="ms-3"><strong class="h6"><a class="reset-anchor animsition-link"
+                                                    href="detail.html">{{ item.name }}</a></strong></div>
+                                    </div>
+                                </td>
+                                <td class="p-3 align-middle border-0">
+                                    <p class="mb-0 small">{{ item.unitPrice }}</p>
+                                </td>
+                                <td class="p-3 align-middle border-0">
+                                    <p class="mb-0 small">{{ item.quantity }}</p>
+                                </td>
+                                <td class="p-3 align-middle border-0">
+                                    <p class="mb-0 small">{{ item.unitPrice *  item.quantity}}</p>
+                                </td>
+                                <td class="p-3 align-middle border-0"><a class="reset-anchor" href="#"><i
+                                            class="fas fa-trash-alt small text-muted"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Cart footer-->
+                    <div class="bg-light p-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <ul class="list-inline mb-0">
+                                    <li class="list-inline-item py-1"><a class="btn btn-outline-primary" href="#"> <i
+                                                class="fas fa-shopping-bag me-2"></i>Continue shopping</a></li>
+                                    <li class="list-inline-item py-1"><a class="btn btn-primary" href="checkout.html">
+                                            <i class="far fa-credit-card me-2"></i>Process checkout</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 text-start text-md-end">
+                                <p class="text-muted mb-1">Cart total</p>
+                                <h6 class="h4 mb-0">$75.00</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
