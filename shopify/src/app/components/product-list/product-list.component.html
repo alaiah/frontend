@@ -1,65 +1,82 @@
-<div class="container pt-5">
+<div class="container">
     <div class="row">
-        <div class="col-lg-6"></div>
-        <div class="col-lg-6">
-            <app-product-search></app-product-search>
+
+        <div class="col-xl-2 col-lg-3 order-2 order-lg-1" style="border-right: 1px solid #eee; margin: 10px 0px;">
+            <app-product-category-menu></app-product-category-menu>
+
         </div>
 
-    </div>
-
-</div>
-
-
-<div class="container px-4 px-lg-5 mt-3">
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
-
-        <div *ngFor="let tempProduct of products" class="col mb-5">
-            <div class="card h-100">
-                <!-- Product image-->
-                <img class="card-img-top" src="{{ tempProduct.imageUrl }}">
-                <!-- Product details-->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Product name-->
-                        <h5 class="fw-bolder"><a style="text-decoration: none;"
-                                routerLink="/products/{{ tempProduct.id }}">{{ tempProduct.name }}</a></h5>
-                        <!-- Product price-->
-                        {{ tempProduct.unitPrice | currency:'USD' }}
-                    </div>
-                </div>
-                <!-- Product actions-->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" (click)="addItemtoCart(tempProduct)">Add to cart</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer-pagination">
-        <div class="row">
-            <div class="col-md-6"></div>
-            <div class="col-md-6">
+        <div class="col-xl-10 col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
+            <div class="container pt-5">
                 <div class="row">
-                    <div class="col-md-8" >
-                        <ngb-pagination [(page)]="pageNumber" [pageSize]="pageSize" [collectionSize]="totalElements" [maxSize]="3" [boundaryLinks]="true"
-                            (pageChange)="listProducts()">
-                        </ngb-pagination>
-
-
+                    <div class="col-lg-6"></div>
+                    <div class="col-lg-6">
+                        <app-product-search></app-product-search>
                     </div>
-                    <div class="col-md-4 mt-2" style="text-align: right;">
-                        <span style="padding-right: 10px;">Page size:</span>
 
-                        <select (change)="updatePageSize(getValue($event))">
-                            <option>5</option>
-                            <option  selected="true">10</option>
-                            <option>20</option>
-                            <option>50</option>
-                        </select>
+                </div>
+
+            </div>
+
+
+            <div class="container px-4 px-lg-5 mt-3">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+
+                    <div *ngFor="let tempProduct of products" class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{{ tempProduct.imageUrl }}">
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">
+                                        <a style="text-decoration: none;" routerLink="/products/{{ tempProduct.id }}">{{
+                                            tempProduct.name }}</a>
+                                    </h5>
+                                    <!-- Product price-->
+                                    {{ tempProduct.unitPrice | currency:'USD' }}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                        (click)="addItemtoCart(tempProduct)">Add to cart</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-pagination">
+                    <div class="row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <ngb-pagination [(page)]="pageNumber" [pageSize]="pageSize"
+                                        [collectionSize]="totalElements" [maxSize]="3" [boundaryLinks]="true"
+                                        (pageChange)="listProducts()">
+                                    </ngb-pagination>
+
+
+                                </div>
+                                <div class="col-md-4 mt-2" style="text-align: right;">
+                                    <span style="padding-right: 10px;">Page size:</span>
+
+                                    <select (change)="updatePageSize(getValue($event))">
+                                        <option>5</option>
+                                        <option selected="true">10</option>
+                                        <option>20</option>
+                                        <option>50</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

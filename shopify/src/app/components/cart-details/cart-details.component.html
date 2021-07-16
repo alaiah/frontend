@@ -1,3 +1,4 @@
+
 <section class="py-5">
     <div class="container">
         <div class="row">
@@ -5,7 +6,14 @@
 
                 <div *ngIf="cartItems.length == 0" style="min-height: 500px;">
                     <header class="text-center mb-5">
-                        <h2>Your shopping cart is empty</h2>
+                        <div class="mb-5"><h2>Your shopping cart is empty</h2></div>
+
+                        <div>
+                            <a class="btn btn-outline-primary" routerLink="products"> 
+                                <i class="fas fa-shopping-bag me-2"></i>Continue shopping
+                            </a>
+     
+                        </div>
                     </header>
                 </div>
                 <!-- Navigation-->
@@ -40,13 +48,26 @@
                                     <p class="mb-0 small">{{ item.unitPrice }}</p>
                                 </td>
                                 <td class="p-3 align-middle border-0">
-                                    <p class="mb-0 small">{{ item.quantity }}</p>
+                                    <div class="row no-gutters">
+                                        <div class="col">
+                                            <button (click)="addToCart(item)" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button>
+                                        </div>
+                                        <div class="col">
+                                            {{ item.quantity }}
+                                        </div>
+                                        <div class="col">
+                                            <button (click)="decrementQuantity(item)"  class="btn btn-primary btn-sm"><i class="fas fa-minus"></i></button>
+                                        </div>
+                                    </div>
                                 </td>
                                 <td class="p-3 align-middle border-0">
-                                    <p class="mb-0 small">{{ item.unitPrice *  item.quantity}}</p>
+                                    <p class="mb-0 small">{{ item.unitPrice * item.quantity | currency: "USD"}}</p>
                                 </td>
-                                <td class="p-3 align-middle border-0"><a class="reset-anchor" href="#"><i
-                                            class="fas fa-trash-alt small text-muted"></i></a></td>
+                                <td class="p-3 align-middle border-0">
+                                    <a class="reset-anchor" (click)="deleteItem(item)">
+                                        <i class="fas fa-trash-alt small text-muted"></i>
+                                    </a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -55,15 +76,21 @@
                         <div class="row align-items-center">
                             <div class="col-md-6">
                                 <ul class="list-inline mb-0">
-                                    <li class="list-inline-item py-1"><a class="btn btn-outline-primary" href="#"> <i
-                                                class="fas fa-shopping-bag me-2"></i>Continue shopping</a></li>
-                                    <li class="list-inline-item py-1"><a class="btn btn-primary" href="checkout.html">
-                                            <i class="far fa-credit-card me-2"></i>Process checkout</a></li>
+                                    <li class="list-inline-item py-1">
+                                        <a class="btn btn-outline-primary" routerLink="products"> 
+                                            <i class="fas fa-shopping-bag me-2"></i>Continue shopping
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item py-1">
+                                        <a class="btn btn-primary" routerLink="/checkout">
+                                            <i class="far fa-credit-card me-2"></i>Process checkout
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="col-md-6 text-start text-md-end">
                                 <p class="text-muted mb-1">Cart total</p>
-                                <h6 class="h4 mb-0">$75.00</h6>
+                                <h6 class="h4 mb-0">{{ totalPrice | currency: "USD" }}</h6>
                             </div>
                         </div>
                     </div>

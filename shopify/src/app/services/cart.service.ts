@@ -7,7 +7,7 @@ import { CartItem } from '../common/cart-item';
 })
 export class CartService {
 
- 
+
   cart: CartItem[] = [];
 
   totatPrice: Subject<number> = new Subject<number>();
@@ -21,12 +21,38 @@ export class CartService {
     let index = this.cart.findIndex(obj => obj.id === theCartItem.id);
     if (index > -1) {
       this.cart[index].quantity = this.cart[index].quantity + 1;
-     } else {
+    } else {
       this.cart.push(theCartItem);
-     }
+    }
 
-     this.computeTotalValues();
+    this.computeTotalValues();
   }
+
+  decrementQuantity(theCartItem: CartItem) {
+
+    let index = this.cart.findIndex(obj => obj.id === theCartItem.id);
+    if (index > -1) {
+      if (this.cart[index].quantity == 1) {
+        this.cart.splice(index, 1);
+      } else {
+        this.cart[index].quantity = this.cart[index].quantity - 1;
+      }
+    }
+
+    this.computeTotalValues();
+  }
+
+
+  deleteItem(theCartItem: CartItem) {
+
+    let index = this.cart.findIndex(obj => obj.id === theCartItem.id);
+    if (index > -1) {
+      this.cart.splice(index, 1);
+    }
+
+    this.computeTotalValues();
+  }
+
 
 
   computeTotalValues() {
@@ -34,7 +60,7 @@ export class CartService {
     let tempTotalQuantity = 0;
     let tempTotalPrice = 0.0;
 
-    for(let item of this.cart) {
+    for (let item of this.cart) {
       tempTotalQuantity += item.quantity;
       tempTotalPrice += item.quantity * item.unitPrice;
     }
@@ -42,5 +68,5 @@ export class CartService {
     this.totalQuantity.next(tempTotalQuantity);
     this.totatPrice.next(tempTotalPrice);
   }
- 
+
 }
