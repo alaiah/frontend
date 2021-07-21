@@ -23,10 +23,7 @@ export class CartDetailsComponent implements OnInit {
         this.totalPrice = data;
       }
     )
-    
-    this.cartService.computeTotalValues();
-
-    
+   
   }
 
   addToCart(item: CartItem) {

@@ -1,59 +1,86 @@
 <!-- Navigation-->
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#!"><img src="assets/images/logo1.png" alt="luv2shop" width="250px;"
+
+
+    <div class="container px-3 px-lg-3">
+        <a class="navbar-brand" href="#!"><img src="assets/images/logo1.png" alt="luv2shop" width="150px;"
                 class="img-responsive"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">All Products</a></li>
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                        <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                    </ul>
-                </li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" routerLink="products">Home</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="products">About</a></li>
+
+                <li class="nav-item"><a class="nav-link" routerLink="products">Shop</a></li>
+
             </ul>
 
+            <app-login-status></app-login-status>
             <app-cart-status></app-cart-status>
 
         </div>
     </div>
 </nav>
 
-<!-- Header-->
-<header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Shop in style</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-        </div>
-    </div>
-</header>
-<!-- Section-->
-
-<section>
-    <div class="container">
-        <div class="row">
-
-            <router-outlet></router-outlet>
-
-        </div>
-    </div>
-</section>
 
 
+<router-outlet></router-outlet>
+
+<!--
 <footer class="py-5 bg-dark">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>
+    </div>
+</footer>
+-->
+
+<footer class="bg-dark">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-4 col-sm-12 mb-3 mb-md-0"><img class="img-fluid mb-3" src="/assets/images/logo2.png"
+                    alt="Patrol" width="120">
+            </div>
+            <div class="col-md-2 col-sm-12 mb-3 mb-md-0">
+                <h6 class="text-white">Menu</h6>
+                <ul class="list-unstyled text-muted mb-0">
+                    <li class="mb-2"> <a class="reset-anchor" href="#">About</a></li>
+                    <li class="mb-2"><a class="reset-anchor" href="#">Blog</a></li>
+                    <li class="mb-2"><a class="reset-anchor" href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-12 mb-3 mb-md-0">
+                <h6 class="text-white">Checkout</h6>
+                <ul class="list-unstyled text-muted mb-0">
+                    <li class="mb-2"> <a class="reset-anchor" href="#">My Account</a></li>
+                    <li class="mb-2"> <a class="reset-anchor" href="#">Order Tracking</a></li>
+                    <li class="mb-2"> <a class="reset-anchor" href="#">Checkout</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-12 mb-3 mb-md-0">
+                <p class="lead mb-1 text-white"><a class="reset-anchor" href="tel:+1 248 971 5518">+1 248 971 5518</a></p>
+                <p class="text-muted">3423 Alpine Rd, Troy, MI 48084</p>
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item"><a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li class="list-inline-item"><a class="social-icon" href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a class="social-icon" href="#"><i class="fab fa-youtube"></i></a></li>
+                    <li class="list-inline-item"><a class="social-icon" href="#"><i class="fab fa-pinterest"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="border-top py-4" style="border-color: #1d1d1d !important">
+            <div class="row">
+                <div class="col-lg-6">
+                    <p class="small text-muted mb-0">© 2020 All rights reserved.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>

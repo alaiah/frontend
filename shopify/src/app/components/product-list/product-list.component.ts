@@ -31,13 +31,12 @@ export class ProductListComponent implements OnInit {
  
   }
 
+
   listProducts() {
     
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
-    console.log(`Search mode: ${this.searchMode}`);
     if (this.searchMode) {
       let keyword = this.route.snapshot.paramMap.get('keyword');
-      console.log(keyword);
       this.productService.searchProducts(keyword, this.pageNumber - 1, this.pageSize).subscribe(
         data => {
           this.products = data._embedded.products;
@@ -48,9 +47,6 @@ export class ProductListComponent implements OnInit {
         }
 
       )
-
-
- 
     } else {
         const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
         if (hasCategoryId) {
