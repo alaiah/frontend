@@ -2,6 +2,9 @@
     <div *ngIf="isAuthenticated && userFullName" class="login-status-user-info">
         Welcome <b>{{ userFullName }}</b>!
     </div>
+    <div style="padding-right: 5px;">
+        <button *ngIf="isAuthenticated" routerLink="/orders" class="security-btn">Orders</button>
+    </div>
 
     <div>
         <button *ngIf="!isAuthenticated" routerLink="/login" class="security-btn">Login</button>

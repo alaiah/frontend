@@ -33,7 +33,9 @@ export class CheckoutService {
 
   isEmailUnique(email: string) : Observable<boolean> {
 
-    const myUrl = `http://localhost:8080/api/customers/search/doesCustomerExists?email=${email}`;
+    // const myUrl = `http://localhost:8080/api/customers/search/doesCustomerExists?email=${email}`;
+    const myUrl = `http://localhost:8080/api/generic/isExistingCustomer?email=${email}`;
+
     return this.httpClient.get<boolean>(myUrl);
    }
 }

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { ProductService } from './services/product.service';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
@@ -20,12 +20,15 @@ import { LoginStatusComponent } from './components/login-status/login-status.com
 import {
   OKTA_CONFIG,
   OktaAuthModule,
-  OktaCallbackComponent
+  OktaCallbackComponent,
+  OktaAuthGuard
 } from '@okta/okta-angular';
 
 import myAppConfig from './config/my-app-config';
 import { RouteGuardService } from './services/route-guard.service';
 import { CompletedComponent } from './components/completed/completed.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 const oktaConfig = Object.assign({
   onAuthRequired: (injector) => {
@@ -42,7 +45,7 @@ const routes: Routes = [
   {path: 'login/callback', component: OktaCallbackComponent },
   {path: 'login', component: LoginComponent},
   {path: 'completed', component: CompletedComponent},
-
+  {path: 'orders', component: OrderHistoryComponent, canActivate: [OktaAuthGuard]},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
@@ -66,7 +69,8 @@ const routes: Routes = [
     CheckoutComponent,
     LoginComponent,
     LoginStatusComponent,
-    CompletedComponent
+    CompletedComponent,
+    OrderHistoryComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -76,7 +80,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     OktaAuthModule
   ],
-  providers: [ProductService, {provide: OKTA_CONFIG, useValue: oktaConfig}],
+  providers: [ProductService, {provide: OKTA_CONFIG, useValue: oktaConfig},
+              {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
