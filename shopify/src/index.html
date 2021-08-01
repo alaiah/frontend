@@ -14,15 +14,24 @@
   <title>Shopify</title>
   <base href="/">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+     <!-- Css Styles -->
 
-  <!-- Bootstrap icons-->
-  <!--
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-  -->
-</head>
+ 
+ </head>
 
 <body>
+  <script>
+    var hash = window.location.hash;
+    console.log(hash);
+    const newHashpath = hash.replace("#!/", ""); //(/#!(\/.*)$/.exec(window.location.pathname) || [])[1];
+    if (newHashpath) {
+      // history.replace(path);
+      window.history.pushState({}, '', newHashpath);
+    }
+  </script>
+
   <app-root></app-root>
+
 </body>
 
 </html>

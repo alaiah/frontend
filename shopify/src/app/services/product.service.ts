@@ -4,31 +4,30 @@ import { Observable } from 'rxjs';
 import { Product } from '../common/product';
 import { map } from 'rxjs/operators';
 import { ProductCategory } from '../common/product-category';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private baseUrl = 'http://localhost:8080/api/products';
-  private productCategoryUrl = 'http://localhost:8080/api/product-category';
+  baseUrl: string = environment.API_URL;
 
 
-
-
-
-  constructor(private httpClient: HttpClient ) { }
+  constructor(private httpClient: HttpClient) { }
 
   getProductList(theCategoryId: number, pageNumber: number, pageSize: number): Observable<GetResponseProducts> {
 
-    const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}&page=${pageNumber}&size=${pageSize}`;
+    const searchUrl = `${this.baseUrl}/products/search/findByCategoryId?id=${theCategoryId}&page=${pageNumber}&size=${pageSize}`;
 
+    console.log(`URL: ${searchUrl}`);
     return this.httpClient.get<GetResponseProducts>(searchUrl);
- }
+  }
 
   getCategories(): Observable<ProductCategory[]> {
-    return this.httpClient.get<GetResponseCategory>(this.productCategoryUrl).pipe(
+
+    const productCategoryUrl: string = `${this.baseUrl}/product-category`;
+    return this.httpClient.get<GetResponseCategory>(productCategoryUrl).pipe(
       map(response => response._embedded.productCategory)
 
     )
@@ -37,7 +36,7 @@ export class ProductService {
 
   searchProducts(keyword: string, pageNumber: number, pageSize: number): Observable<GetResponseProducts> {
 
-    const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${keyword}&page=${pageNumber}&size=${pageSize}`;
+    const searchUrl = `${this.baseUrl}/products/search/findByNameContaining?name=${keyword}&page=${pageNumber}&size=${pageSize}`;
     return this.httpClient.get<GetResponseProducts>(searchUrl);
 
   }
@@ -45,7 +44,7 @@ export class ProductService {
   getProductDetails(productId: number): Observable<Product> {
 
 
-    const productDetailUrl: string = `${this.baseUrl}/${productId}`;
+    const productDetailUrl: string = `${this.baseUrl}/products/${productId}`;
     return this.httpClient.get<Product>(productDetailUrl);
   }
 

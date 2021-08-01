@@ -7899,9 +7899,6 @@ fieldset:disabled .btn {
   background-color: #dc3545 !important;
 }
 
-.bg-light {
-  background-color: #f8f9fa !important;
-}
 
 .bg-dark {
   background-color: #111111 !important;
@@ -10861,7 +10858,6 @@ fieldset:disabled .btn {
 
 @media (min-width: 992px) {
   .navbar-brand {
-    //position: absolute;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
@@ -10869,7 +10865,7 @@ fieldset:disabled .btn {
 }
 
 .navbar .badge {
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   left: 0;
 }
@@ -11489,6 +11485,7 @@ a.text-hover-light:focus, a.text-hover-light:hover {
 .bg-light-light {
   background-color: theme-color-level("light", -11);
 }
+
 
 .border-light {
   border-color: #f8f9fa !important;
@@ -12118,7 +12115,7 @@ a.text-hover-dark:focus, a.text-hover-dark:hover {
   right: 50% !important;
   -webkit-transform: translateX(102%);
   transform: translateX(102%);
-  leftt: auto !important;
+  left: auto !important;
 }
 
 .swiper-button-disabled {
@@ -12248,7 +12245,6 @@ STYLE SWITCHER FOR DEMO
 
 .navbar-light .navbar-nav .nav-link {
   color: rgba(0, 0, 0, 0.95);
-  //font-size: 0.9rem;
   font-size: 18px;
 }
 
@@ -12485,4 +12481,81 @@ STYLE SWITCHER FOR DEMO
 
 .product-title {
   font-size: 16px;
+}
+
+.bigicon {    
+  color:white;
+}
+
+
+.login-status {
+
+  color: #000;
+  text-decoration: none;
+  vertical-align: bottom;
+ }
+
+ /* Cart details styling */
+
+ 
+.title {
+  margin-bottom: 5vh
+}
+
+.card {
+  margin: auto;
+  width: 90%;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1rem;
+  border: transparent
+}
+
+@media(max-width:767px) {
+  .card {
+      margin: 3vh auto
+  }
+}
+
+.cart {
+  background-color: #fff;
+  padding: 4vh 5vh;
+  border-bottom-left-radius: 1rem;
+  border-top-left-radius: 1rem
+}
+
+@media(max-width:767px) {
+  .cart {
+      padding: 4vh;
+      border-bottom-left-radius: unset;
+      border-top-right-radius: 1rem
+  }
+}
+
+
+
+.close {
+  margin-left: auto;
+  font-size: 0.7rem
+}
+
+
+
+
+#code {
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+  background-repeat: no-repeat;
+  background-position-x: 95%;
+  background-position-y: center
+}
+
+@media only screen and (max-width: 960px) {
+  .col-xs-12 {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .py-5 {
+    padding-top: 1rem!important;
+    padding-bottom: 1rem!important;
+}
 }

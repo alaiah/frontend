@@ -6,14 +6,16 @@ import { of } from 'rxjs'
 import { map } from 'rxjs/operators';
 import { Country } from '../common/country';
 import { State } from '../common/state';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlaiahFormService {
 
+  
 
-  baseUrl: string = "http://localhost:8080/api";
+   baseUrl: string = environment.API_URL;
 
   constructor(private httpClient: HttpClient) { }
 

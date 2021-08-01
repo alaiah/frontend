@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Customer } from '../common/customer';
 import { Purchase } from '../common/purchase';
 
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,14 +13,15 @@ export class CheckoutService {
 
   //orderTrackingNumber: string;
 
- 
+  baseUrl: string = environment.API_URL;
+
   constructor(private httpClient: HttpClient) { }
 
 
 
   savePurchaseOrder(purchaseOrder: Purchase): Observable<any> {
 
-    const checkoutUrl = `http://localhost:8080/api/checkout/purchase`;
+    const checkoutUrl = `${this.baseUrl}/checkout/purchase`;
     return this.httpClient.post<Purchase>(checkoutUrl, purchaseOrder);
 
 
@@ -26,15 +29,14 @@ export class CheckoutService {
 
   getCustomerDetails(email: string): Observable<Customer> {
 
-    const myUrl = `http://localhost:8080/api/customers/search/findByEmail?email=${email}`;
+    const myUrl = `${this.baseUrl}/customers/search/findByEmail?email=${email}`;
     return this.httpClient.get<Customer>(myUrl);
 
   }
 
   isEmailUnique(email: string) : Observable<boolean> {
 
-    // const myUrl = `http://localhost:8080/api/customers/search/doesCustomerExists?email=${email}`;
-    const myUrl = `http://localhost:8080/api/generic/isExistingCustomer?email=${email}`;
+    const myUrl = `${this.baseUrl}/generic/isExistingCustomer?email=${email}`;
 
     return this.httpClient.get<boolean>(myUrl);
    }

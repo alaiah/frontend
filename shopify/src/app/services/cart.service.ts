@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { CartItem } from '../common/cart-item';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
 
+  
   storage: Storage = sessionStorage;
 
   cart: CartItem[] = [];

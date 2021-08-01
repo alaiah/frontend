@@ -12,23 +12,26 @@ export class LoginStatusComponent implements OnInit {
   isAuthenticated: boolean;
   userFullName: string;
   loggedInUserEmail: string;
+  error: Error;
 
-  constructor(private oktaAuthService: OktaAuthService, private cartService: CartService) { }
 
-  ngOnInit(): void {
-
-    this.oktaAuthService.$authenticationState.subscribe(
-      (result) => {
-        this.isAuthenticated = result;
-        this.getUserDetails();
-      }
-    );
+  constructor(private oktaAuth: OktaAuthService, private cartService: CartService) { 
+    this.oktaAuth.$authenticationState.subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+      this.getUserDetails();
+    });
   }
+  
+
+  async ngOnInit() {
+    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+  }
+
 
   getUserDetails() {
 
     if (this.isAuthenticated) {
-      this.oktaAuthService.getUser().then(
+      this.oktaAuth.getUser().then(
 
         res => {
           this.userFullName = res.given_name;
@@ -38,8 +41,19 @@ export class LoginStatusComponent implements OnInit {
     }
   }
 
-  logout() {
-    this.oktaAuthService.signOut();
+  async login() {
+    try {
+      await this.oktaAuth.signInWithRedirect({ originalUri: '/' });
+    } catch (err) {
+      console.error(err);
+      this.error = err;
+    }
   }
 
+
+  async logout() {
+    await this.oktaAuth.signOut();
+  }
 }
+
+

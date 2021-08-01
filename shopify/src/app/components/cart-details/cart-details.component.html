@@ -1,19 +1,22 @@
+<!--Section: Block Content-->
 
 <section class="py-5">
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 mx-auto">
+            <div class="col-lg-8 mx-auto">
 
                 <div *ngIf="cartItems.length == 0" style="min-height: 500px;">
                     <header class="text-center mb-5">
-                        <div class="mb-5"><h2>Your shopping cart is empty</h2></div>
+                        <div class="mb-5">
+                            <h2>Your shopping cart is empty</h2>
+                        </div>
 
                         <div>
-                            <a class="btn btn-outline-primary" routerLink="products"> 
+                            <a class="btn btn-outline-primary" routerLink="products">
                                 <i class="fas fa-shopping-bag me-2"></i>Continue shopping
                             </a>
-     
+
                         </div>
                     </header>
                 </div>
@@ -23,86 +26,133 @@
                 </header>
                 <ul class="nav nav-tabs nav-fill border-bottom mb-5 flex-column flex-md-row">
                     <li class="nav-item"><a class="nav-link active" aria-current="page">1. Shopping cart</a></li>
-                    <li class="nav-item"><a class="nav-link disabled" >2. Billing Information</a></li>
-                    <li class="nav-item"><a class="nav-link disabled" >3. Completed</a></li>
-                  </ul>
-            
-                <!-- Shopping cart-->
-                <div *ngIf="cartItems.length > 0" class="table-responsive mb-4">
-                    <table class="table">
-                        <thead class="bg-light">
-                            <tr>
-                                <th class="p-3 border-0" scope="col"><strong class="text-uppercase">Product</strong>
-                                </th>
-                                <th class="p-3 border-0" scope="col"><strong class="text-uppercase">Price</strong></th>
-                                <th class="p-3 border-0" scope="col"><strong class="text-uppercase">Quantity</strong>
-                                </th>
-                                <th class="p-3 border-0" scope="col"><strong class="text-uppercase">Total</strong></th>
-                                <th class="p-3 border-0" scope="col"><strong class="text-uppercase"></strong></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let item of cartItems">
-                                <td class="p-3 pl-0 border-0" scope="row">
-                                    <div class="d-flex align-items-center"><a
-                                            class="reset-anchor d-block animsition-link" href="detail.html"><img
-                                                src="{{ item.imageUrl }}" alt="..." width="100"></a>
-                                        <div class="ms-3"><strong class="h6"><a class="reset-anchor animsition-link"
-                                                    href="detail.html">{{ item.name }}</a></strong></div>
-                                    </div>
-                                </td>
-                                <td class="p-3 align-middle border-0">
-                                    <p class="mb-0 small">{{ item.unitPrice }}</p>
-                                </td>
-                                <td class="p-3 align-middle border-0">
-                                    <div class="row no-gutters">
-                                        <div class="col">
-                                            <button (click)="addToCart(item)" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button>
-                                        </div>
-                                        <div class="col">
-                                            {{ item.quantity }}
-                                        </div>
-                                        <div class="col">
-                                            <button (click)="decrementQuantity(item)"  class="btn btn-primary btn-sm"><i class="fas fa-minus"></i></button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="p-3 align-middle border-0">
-                                    <p class="mb-0 small">{{ item.unitPrice * item.quantity | currency: "USD"}}</p>
-                                </td>
-                                <td class="p-3 align-middle border-0">
-                                    <a class="reset-anchor" (click)="deleteItem(item)">
-                                        <i class="fas fa-trash-alt small text-muted"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!-- Cart footer-->
-                    <div class="bg-light p-4">
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <ul class="list-inline mb-0">
-                                    <li class="list-inline-item py-1">
-                                        <a class="btn btn-outline-primary" routerLink="/products"> 
-                                            <i class="fas fa-shopping-bag me-2"></i>Continue shopping
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item py-1">
-                                        <a class="btn btn-primary" routerLink="/checkout">
-                                            <i class="far fa-credit-card me-2"></i>Process checkout
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6 text-start text-md-end">
-                                <p class="text-muted mb-1">Cart total</p>
-                                <h6 class="h4 mb-0">{{ totalPrice | currency: "USD" }}</h6>
+                    <li class="nav-item"><a class="nav-link disabled">2. Billing Information</a></li>
+                    <li class="nav-item"><a class="nav-link disabled">3. Completed</a></li>
+                </ul>
+            </div>
+
+
+            <!-- Card -->
+            <div *ngIf="cartItems.length > 0" class="mb-3">
+                <div class="pt-4">
+
+
+                    <div *ngFor="let item of cartItems" class="row mb-4">
+                        <div class="col-md-5 col-lg-3 col-xl-3">
+                            <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                                <img class="img-fluid w-100" src="{{ item.imageUrl }}" alt="Sample">
                             </div>
                         </div>
+                        <div class="col-md-7 col-lg-9 col-xl-9">
+                            <div>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5>{{ item.name }}</h5>
+                                        <!--
+                                        <p class="mb-3 text-muted text-uppercase small">{{ item.name }}</p>
+                                        -->
+                                        <p class="mb-3 text-muted text-uppercase small">Unit Price: {{ item.unitPrice |
+                                            currency: "USD"}}</p>
+                                    </div>
+                                    <div>
+                                        <div class="def-number-input number-input safari_only mb-0 w-100">
+                                            <button (click)="decrementQuantity(item)" class="btn btn-primary btn-sm"><i
+                                                    class="fas fa-minus"></i></button> {{ item.quantity }}
+                                            <button (click)="addToCart(item)" class="btn btn-primary btn-sm"><i
+                                                    class="fas fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <a (click)="deleteItem(item)" type="button"
+                                            class="card-link-secondary small text-uppercase mr-3"><i
+                                                class="fas fa-trash-alt mr-1"></i> Remove item </a>
+                                    </div>
+                                    <p class="mb-0"><span><strong id="summary">{{ item.unitPrice * item.quantity |
+                                                currency: "USD" }}</strong></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="mb-4">
                     </div>
+                    <hr class="mb-4">
+                    <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase,
+                        adding
+                        items to your cart does not mean booking them.</p>
+
                 </div>
             </div>
+            <!-- Card -->
+
+            <!-- Card -->
+
+            <!-- Card -->
+            <div class="mb-3">
+                <div class="pt-4">
+
+                    <h5 class="mb-4">We accept</h5>
+
+                    <img class="mr-2" width="45px"
+                        src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+                        alt="Visa">
+                    <img class="mr-2" width="45px"
+                        src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+                        alt="Mastercard">
+                </div>
+            </div>
+            <!-- Card -->
+
         </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-4">
+
+            <!-- Card -->
+            <div class="mb-3">
+                <div class="pt-4">
+
+                    <h5 class="mb-3">The total amount of</h5>
+
+                    <ul class="list-group list-group-flush">
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                            Temporary amount
+                            <span>{{ totalPrice | currency: "USD" }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            Shipping
+                            <span>Free</span>
+                        </li>
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                            <div>
+                                <strong>Grand Total</strong>
+                            </div>
+                            <span><strong>{{ totalPrice | currency: "USD" }}</strong></span>
+                        </li>
+
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-1">
+                            <a class="btn btn-primary" routerLink="/checkout"> <i
+                                    class="far fa-credit-card me-2"></i>Process checkout</a>
+                        </li>
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-1">
+                            <a class="btn btn-outline-primary" routerLink="/products"><i
+                                    class="fas fa-shopping-bag me-2"></i>Continue shopping</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <!-- Card -->
+
+        </div>
+        <!--Grid column-->
+
     </div>
+ 
 </section>
+<!--Section: Block Content-->

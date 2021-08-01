@@ -1,7 +1,35 @@
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0 flex-row" style="float: right;">
+    <li class="nav-item me-3">
+        <a class="login-status" routerLink="/cart">
+
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            <span class="badge rounded-pill bg-primary">{{ totalQuantity }}</span>
+
+        </a>
+    </li>
+</ul>
+
+
+<!--
 
 <div class="cart-area d-n">
-    <a routerLink="/cart">
-        <div class="total">{{ totalPrice | currency: "USD" }}<span> {{ totalQuantity }}</span> </div> <i class="fa fa-shopping-cart"
-            aria-hidden="true"></i>
+
+     <a routerLink="/cart">
+        <div class="total">{{ totalPrice | currency: "USD" }}<span> {{ totalQuantity }}</span> </div> <i
+            class="fa fa-shopping-cart" aria-hidden="true"></i>
     </a>
+   <a routerLink="/cart">
+        
+        <i class="fa fa-shopping-cart" style="color: #000;" aria-hidden="true"></i>
+        <span class="badge rounded-pill bg-primary">{{ totalQuantity }}</span>
+        
+    </a>
+
+
+
+    
+
+
 </div>
+
+-->
