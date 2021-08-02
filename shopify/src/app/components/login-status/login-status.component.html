@@ -1,8 +1,24 @@
+
+<div>
+    <div *ngIf="!isAuthenticated">
+        <a class="login-status" (click)="login()">
+            <i class="fa fa-user" aria-hidden="true"></i><span>&#160;Login</span>
+        </a>
+    </div>
+    <div *ngIf="isAuthenticated">
+        <a class="login-status" (click)="logout()">
+            <i class="fa fa-user" aria-hidden="true"></i><span>&#160;Logout</span>
+        </a>
+    </div>
+
+
+</div>
+
+
+<!--
 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 flex-row" style="float: right;">
-    <!--
-    <li *ngIf="isAuthenticated && userFullName" class="nav-item me-3"><span>Welcome <b>{{ userFullName }}</b>!</span>
+     <li *ngIf="isAuthenticated && userFullName" class="nav-item me-3"><span>Welcome <b>{{ userFullName }}</b>!</span>
     </li>
--->
     <li *ngIf="isAuthenticated" class="nav-item me-3">
         <a class="login-status" routerLink="/orders"><span>&#160;Orders</span></a>
     </li>
@@ -17,6 +33,7 @@
         </a>
     </li>
 </ul>
+-->
 
 <!--
 <div>

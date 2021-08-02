@@ -12559,3 +12559,42 @@ STYLE SWITCHER FOR DEMO
     padding-bottom: 1rem!important;
 }
 }
+
+.navbar-brand > .logo-size{
+  width: 150px;
+}
+
+
+@media (max-width: 575.98px) {
+  
+
+  .navbar-brand > .logo-size{
+    width: 125px;
+  }
+
+  .card-body.p-4 {
+
+    padding: 0.5rem!important;
+  }
+
+  .card-footer.p-4 {
+
+    padding: 0.5rem!important;
+  }
+
+  .container.px-4 {
+    padding-right: 0.5rem!important;
+    padding-left: 0.5rem!important;
+  }
+
+  .product-category.py-5 {
+    padding-top: 0.5rem!important;
+    padding-bottom: 0.5rem!important;
+   
+  }
+
+  .container.pt-5 {
+    padding-top: 0.5rem!important;
+  }
+
+}

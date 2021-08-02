@@ -1,6 +1,6 @@
-<div class="py-5">
+<div class="product-category py-5">
   <h5 class="mb-4">Shop by Category</h5>
-  <ul class="list-unstyled text-muted mb-5">
+  <ul class="list-unstyled text-muted">
     <li *ngFor="let tempProductCategory of  productCategories"
       class="mb-2 d-flex align-items-center justify-content-between">
       <a class="reset-anchor" routerLink="/category/{{ tempProductCategory.id }}" routerLinkActive="active-link">{{

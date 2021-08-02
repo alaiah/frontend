@@ -5,8 +5,7 @@
 
 
   <div class="container px-3 px-lg-3">
-    <a class="navbar-brand" href="#!"><img src="assets/images/logo1.png" alt="luv2shop" width="150px;"
-        class="img-responsive"></a>
+    <a class="navbar-brand" href="#!"><img src="assets/images/logo1.png" alt="luv2shop" class="img-responsive logo-size"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
         class="navbar-toggler-icon"></span></button>
@@ -15,18 +14,24 @@
         <li class="nav-item"><a data-toggle="tab" class="nav-link active" aria-current="page"
             routerLink="products">Home</a>
         </li>
-        <li class="nav-item"><a class="nav-link" routerLink="products">About</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/products">About</a></li>
 
-        <li class="nav-item"><a class="nav-link" routerLink="products">Shop</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/products">Shop</a></li>
+        <li *ngIf="isAuthenticated" class="nav-item"><a class="nav-link" routerLink="/orders">Orders</a></li>
 
       </ul>
 
-      <app-cart-status></app-cart-status>
-
-      <app-login-status></app-login-status>
 
 
 
+    </div>
+    <div class="d-flex align-items-center" style="float: right;">
+      <div class="d-inline-block">
+        <app-cart-status></app-cart-status>
+      </div>
+      <div class="d-inline-block">
+        <app-login-status></app-login-status>
+      </div>
     </div>
   </div>
 </nav>
@@ -86,4 +91,3 @@
     </div>
   </div>
 </footer>
-
