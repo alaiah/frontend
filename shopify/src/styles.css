@@ -12598,3 +12598,14 @@ STYLE SWITCHER FOR DEMO
   }
 
 }
+
+
+.reset-anchor.active {
+
+  font-weight: 600;
+  color: #000;
+}
+
+option:hidden{
+  color: gray;
+}

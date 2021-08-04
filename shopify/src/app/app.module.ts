@@ -28,22 +28,28 @@ import { RouteGuardService } from './services/route-guard.service';
 import { CompletedComponent } from './components/completed/completed.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { BlogComponent } from './components/blog/blog.component';
 
 
 const routes: Routes = [
 
+  {path: 'home', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'blog', component: BlogComponent},
   {path: 'login/callback', component: OktaCallbackComponent },
   {path: 'completed', component: CompletedComponent},
   {path: 'orders', component: OrderHistoryComponent, canActivate: [OktaAuthGuard]},
-  {path: 'checkout', component: CheckoutComponent},
-  {path: 'cart', component: CartDetailsComponent},
+  {path: 'products/checkout', component: CheckoutComponent},
+  {path: 'products/cart', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
   {path: 'search/:keyword', component: ProductListComponent},
-  {path: 'category/:id', component: ProductListComponent},
+  {path: 'products/category/:id', component: ProductListComponent},
   {path: 'product-category', component: ProductListComponent},
   {path: 'products', component: ProductListComponent},
-  {path: '', component: ProductListComponent},
-  {path: '**',  redirectTo: '/products', pathMatch: 'full'}
+  {path: '/', component: HomeComponent},
+  {path: '**',  redirectTo: '/home', pathMatch: 'full'}
 ]
 
 @NgModule({
@@ -58,7 +64,10 @@ const routes: Routes = [
     CheckoutComponent,
     LoginStatusComponent,
     CompletedComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
+    HomeComponent,
+    AboutComponent,
+    BlogComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

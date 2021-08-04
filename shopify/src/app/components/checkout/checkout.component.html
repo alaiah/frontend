@@ -78,8 +78,8 @@
                 <div formGroupName="shippingAddress" class="form-area">
                   <div class="form-group col-lg-12 mb-3">
                     <label class="form-label small text-uppercase">Country</label>
-                    <select formControlName="country" class="form-control js-choice"
-                      (change)="populateStatesForShippingAddress()">
+                    <select formControlName="country" class="form-control js-choice" (change)="populateStatesForShippingAddress()">
+                      <option value="" disabled selected hidden>Select a country</option>
                       <option *ngFor="let country of countries" [ngValue]="country">{{ country.name }}</option>
                     </select>
                     <div *ngIf="shippingCountry.invalid && (shippingCountry.dirty || shippingCountry.touched)">
@@ -112,6 +112,7 @@
                     <div class="form-group col-lg-6 mb-3">
                       <label class="form-label small text-uppercase">State</label>
                       <select formControlName="state" class="form-control js-choice">
+                        <option value="" disabled selected hidden>Select a state/province</option>
                         <option *ngFor="let state of shippingAddressStates" [ngValue]="state">{{ state.name }}</option>
                       </select>
                       <div *ngIf="shippingState.invalid && (shippingState.dirty || shippingState.touched)">
@@ -159,6 +160,7 @@
                   <label class="form-label small text-uppercase">Country</label>
                   <select formControlName="country" class="form-control js-choice"
                     (click)="populateStatesForBillingAddress()">
+                    <option value="" disabled selected hidden>Select a country</option>
                     <option *ngFor="let country of countries" [ngValue]="country">{{ country.name }}</option>
                   </select>
                   <div *ngIf="billingCountry.invalid && (billingCountry.dirty || billingCountry.touched)">
@@ -189,6 +191,7 @@
                   <div class="form-group col-lg-6 mb-3">
                     <label class="form-label small text-uppercase">State</label>
                     <select formControlName="state" class="form-control js-choice">
+                      <option value="" disabled selected hidden>Select a state/province</option>
                       <option *ngFor="let state of billingAddressStates" [ngValue]="state">{{ state.name }}
                       </option>
                     </select>
@@ -221,6 +224,7 @@
                   <div class="form-group col-12 mb-3">
                     <label class="form-label small text-uppercase">Card Type</label>
                     <select formControlName="creditCardType" class="form-control js-choice">
+                      <option value="" disabled selected hidden>Select card type</option>
                       <option value="visa">Visa</option>
                       <option value="mastercard">Mastercard</option>
                     </select>
@@ -260,6 +264,7 @@
                   <div class="form-group col-lg-6 mb-3">
                     <label class="form-label small text-uppercase">Month</label>
                     <select formControlName="expirationMonth" class="form-control js-month">
+                      <option value="" disabled selected hidden>Select a month</option>
                       <option *ngFor="let data of creditCardMonths" value="{{ data }}">{{ data }}</option>
                     </select>
                     <div *ngIf="expirationMonth.invalid && (expirationMonth.dirty || expirationMonth.touched)">
@@ -270,6 +275,7 @@
                   <div class="form-group col-lg-6">
                     <label class="form-label small text-uppercase">Year</label>
                     <select formControlName="expirationYear" class="form-control js-year" (change)="handleMonthsAndYears()">
+                      <option value="" disabled selected hidden>Select a year</option>
                       <option *ngFor="let year of creditCardYears" value="{{ year }}">{{ year }}</option>
                     </select>
                     <div *ngIf="expirationYear.invalid && (expirationYear.dirty || expirationYear.touched)">
@@ -284,7 +290,7 @@
                 <div class="row align-items-center">
                   <div class="col-md-9">
                     <ul class="list-inline mb-0">
-                      <li class="list-inline-item py-1"><a class="btn btn-outline-primary" routerLink="/cart"> <i
+                      <li class="list-inline-item py-1"><a class="btn btn-outline-primary" routerLink="/products/cart"> <i
                             class="fas fa-shopping-cart me-2"></i>Back to cart</a></li>
                       <li class="list-inline-item py-1"><button class="btn btn-primary" type="submit"><i
                             class="far fa-credit-card me-2"></i>Place order</button></li>
@@ -292,7 +298,7 @@
                   </div>
                   <div class="col-md-3 text-start text-md-end">
                     <p class="text-muted mb-1">Cart total</p>
-                    <h6 class="h4 mb-0">{{ totalPrice }}</h6>
+                    <h6 class="h4 mb-0">{{ totalPrice | currency: "USD" }}</h6>
                   </div>
                 </div>
               </div>
