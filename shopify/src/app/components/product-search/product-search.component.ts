@@ -15,7 +15,7 @@ export class ProductSearchComponent implements OnInit {
   }
 
   searchProducts(keyword: string) {
-    return this.route.navigateByUrl(`/search/${keyword}`);
+    return this.route.navigateByUrl(`/products/search/${keyword}`);
 
   }
 

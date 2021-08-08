@@ -466,10 +466,11 @@ progress {
   vertical-align: baseline;
 }
 
+/*
 [hidden] {
   display: none !important;
 }
-
+*/
 .lead {
   font-size: 1.25rem;
   font-weight: 300;
@@ -12606,6 +12607,7 @@ STYLE SWITCHER FOR DEMO
   color: #000;
 }
 
-option:hidden{
+option:disabled{
   color: gray;
+  font-weight: 200;
 }

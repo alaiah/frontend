@@ -44,7 +44,7 @@ const routes: Routes = [
   {path: 'products/checkout', component: CheckoutComponent},
   {path: 'products/cart', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
-  {path: 'search/:keyword', component: ProductListComponent},
+  {path: 'products/search/:keyword', component: ProductListComponent},
   {path: 'products/category/:id', component: ProductListComponent},
   {path: 'product-category', component: ProductListComponent},
   {path: 'products', component: ProductListComponent},
